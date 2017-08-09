@@ -23,6 +23,16 @@ public class HelloWorldController {
 		return "helloworld/index";
 	}
 	
+	@GetMapping("adder")
+	public String adder() {
+		return "helloworld/adder-form";
+	}
+	
+	@GetMapping("subtracter")
+	public String subtracter() {
+		return "helloworld/subtracter-form";
+	}
+	
 	@GetMapping("message")
 	public ModelAndView message(@RequestParam(required=false, defaultValue="«silence»") String message) {
 		ModelAndView mv = new ModelAndView("helloworld/message");
@@ -30,11 +40,20 @@ public class HelloWorldController {
 		mv.addObject("message", message);
 		return mv;
 	}
+	
+	
 	 
 	@PostMapping("adder")
 	public String addTwoNumbers(@RequestParam(name="left") int first, @RequestParam(name="right") double second, Model model) {
 		model.addAttribute("sum", first + second);
 		return "helloworld/sum-result";
 	}
+	
+	@PostMapping("subtracter")
+	public String subtractTwoNumbers(@RequestParam(name="biggerNumber") int first, @RequestParam(name="smallerNumber") double second, Model model) {
+		model.addAttribute("difference", first - second);
+		return "helloworld/subtract-result";
+	}
+	
 	
 }
