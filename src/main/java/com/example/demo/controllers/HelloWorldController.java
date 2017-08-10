@@ -32,7 +32,7 @@ public class HelloWorldController {
 	public String subtracter() {
 		return "helloworld/subtracter-form";
 	}
-	
+		
 	@GetMapping("message")
 	public ModelAndView message(@RequestParam(required=false, defaultValue="«silence»") String message) {
 		ModelAndView mv = new ModelAndView("helloworld/message");
@@ -41,8 +41,14 @@ public class HelloWorldController {
 		return mv;
 	}
 	
+	@GetMapping("whisper")
+	public ModelAndView whisper(@RequestParam(required=false, defaultValue="«silence»") String whisper) {
+		ModelAndView mv = new ModelAndView("helloworld/whisper");
+		mv.addObject("title", title.toLowerCase());
+		mv.addObject("whisper", whisper);
+		return mv;
+	}
 	
-	 
 	@PostMapping("adder")
 	public String addTwoNumbers(@RequestParam(name="left") int first, @RequestParam(name="right") double second, Model model) {
 		model.addAttribute("sum", first + second);
@@ -50,7 +56,7 @@ public class HelloWorldController {
 	}
 	
 	@PostMapping("subtracter")
-	public String subtractTwoNumbers(@RequestParam(name="biggerNumber") int first, @RequestParam(name="smallerNumber") double second, Model model) {
+	public String subtractTwoNumbers(@RequestParam(name="left") int first, @RequestParam(name="right") double second, Model model) {
 		model.addAttribute("difference", first - second);
 		return "helloworld/subtract-result";
 	}
