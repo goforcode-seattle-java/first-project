@@ -26,7 +26,7 @@ public String index() {
 
 //POST Mappings
 @PostMapping("calculator/calculate")
-public ModelAndView calculate(@RequestParam(name="number1") int first, @RequestParam(name="number2") double second, @RequestParam(name="value") String mathOperator, Model model) {
+public ModelAndView calculate(@RequestParam(name="number1") int first, @RequestParam(required=true, name="number2") double second, @RequestParam(required=false, name="mathOperator") String mathOperator, @RequestParam(required=false, name="value") String value, Model model) {
 	Double result = null;
 	
 	switch (mathOperator) {
