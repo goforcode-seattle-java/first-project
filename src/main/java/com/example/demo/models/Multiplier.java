@@ -8,15 +8,9 @@ public class Multiplier {
 		num1 = first;
 		num2 = second;
 	}
-	
-	Multiplier defaultMultiplier = new Multiplier(num1, num2);
-	
+		
 	public Double product() {
 		Double result = num1 * num2;
 		return result;
 	}
-	
-	
-	
-
 }

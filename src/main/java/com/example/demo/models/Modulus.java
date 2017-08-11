@@ -8,8 +8,6 @@ public class Modulus {
 		num1 = first;
 		num2 = second;
 	}
-
-	Modulus defaultModulus = new Modulus(num1, num2);
 	
 	public Double remainder() {
 		Double result = num1 % num2;

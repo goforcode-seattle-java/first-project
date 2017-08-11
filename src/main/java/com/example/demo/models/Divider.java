@@ -9,8 +9,6 @@ public class Divider {
 		num2 = second;
 	}
 	
-	Divider defaultDivider = new Divider(num1, num2);
-	
 	public Double quotient() {
 		Double result = num1 / num2;
 		return result;

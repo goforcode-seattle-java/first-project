@@ -9,8 +9,6 @@ public class Subtracter {
 		num2 = second;
 	}
 	
-	Subtracter defaultSubtracter = new Subtracter(num1, num2);
-	
 	public Double difference() {
 		Double result = num1 - num2;
 		return result;

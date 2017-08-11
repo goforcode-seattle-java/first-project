@@ -4,7 +4,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,23 +17,19 @@ import com.example.demo.models.Subtracter;
 @Controller
 
 public class CalculatorController {
+	
 //GET Mappings
 @GetMapping("/calculator")
 public String index() {
 	return "calculator/index";
 }
 
-@GetMapping("./calculate")
-public String calculate() {
-	return "calculator/calculate-form";
-}
-
 //POST Mappings
 @PostMapping("calculator/calculate")
-public Double calculateResult(@RequestParam(name="number1") int first, @RequestParam(name="number2") double second, @RequestParam(name="value") String mathOperator, Model model) {
-	Double result;
-	switch (mathOperator) {
+public ModelAndView calculate(@RequestParam(name="number1") int first, @RequestParam(name="number2") double second, @RequestParam(name="value") String mathOperator, Model model) {
+	Double result = null;
 	
+	switch (mathOperator) {
 	//If the mathOperator is "+" call the adder method
 	case "+": Adder adder = new Adder(first, second);
 			  result = adder.sum();
@@ -65,7 +60,10 @@ public Double calculateResult(@RequestParam(name="number1") int first, @RequestP
 			  result = exponent.power();
 			  break;
 	}
-	 return result;
+	
+	ModelAndView mv = new ModelAndView("calculator/calc-result");
+	mv.addObject("result", result);
+	
+	 return mv;
 	}
-
 }

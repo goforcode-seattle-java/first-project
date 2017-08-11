@@ -9,8 +9,6 @@ public class Adder {
 		num2 = second; 
 	}
 	
-	Adder defaultAdder = new Adder(num1, num2);
-	
 	public Double sum() {
 	 	Double result = num1 + num2;
 	 	return result;
